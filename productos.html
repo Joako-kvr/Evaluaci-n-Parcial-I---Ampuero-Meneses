@@ -1,11 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Productos — Pastelería Mil Sabores</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-    
+
+  <!-- NAV sencilla para tu estructura de archivos -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="home.html">Pastelería Mil Sabores</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="home.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link active">Productos</a></li>
+          <li class="nav-item"><a href="registro.html" class="nav-link">Registro</a></li>
+          <li class="nav-item"><a href="iniciar sesion.html" class="nav-link">Iniciar sesión</a></li>
+          <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4">
+    <div class="row g-4">
+      <!-- LISTA DE PRODUCTOS -->
+      <section class="col-lg-8">
+        <h1 class="h3 mb-3">Productos</h1>
+
+        <!-- Filtros simples -->
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Categoría</label>
+            <select id="filtroCategoria" class="form-select"></select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Buscar</label>
+            <input id="filtroTexto" class="form-control" placeholder="Nombre o descripción">
+          </div>
+        </div>
+
+        <div id="listaProductos" class="row g-3"></div>
+      </section>
+
+      <!-- CARRITO -->
+      <aside class="col-lg-4">
+        <h2 class="h4 mb-3">Carrito</h2>
+        <ol id="carrito" class="list-group list-group-numbered"></ol>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <strong id="totalCarrito">Total: $ 0</strong>
+          <button id="btnVaciar" class="btn btn-outline-secondary btn-sm">Vaciar</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ======= SCRIPTS ======= -->
+  <script>
+    /* ========= Catálogo segun la pauta ========= */
+    const CATEGORIAS = [
+      "Tortas Cuadradas","Tortas Circulares","Postres Individuales","Productos Sin Azúcar",
+      "Pastelería Tradicional","Productos Sin Gluten","Productos Vegana","Tortas Especiales"
+    ];
+
+    const PRODUCTS = [
+      // Tortas Cuadradas
+      {codigo:"TC001", categoria:"Tortas Cuadradas", nombre:"Torta Cuadrada de Chocolate", precio:45000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh6j8kWakbYU6HkmvNQQ644q298KfRE7IKGQ&s", desc:"Ganache de chocolate con avellanas."},
+      {codigo:"TC002", categoria:"Tortas Cuadradas", nombre:"Torta Cuadrada de Frutas", precio:50000, img:"https://i.pinimg.com/originals/58/39/36/583936f9d443804dd4b2a86738680563.jpg", desc:"Frutas frescas y crema chantilly."},
+
+      // Tortas Circulares
+      {codigo:"TT001", categoria:"Tortas Circulares", nombre:"Torta Circular de Vainilla", precio:40000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3VXroWIlYWC7oLTs8iF79z0j5SKK346kscA&s", desc:"Bizcocho de vainilla con crema pastelera."},
+      {codigo:"TT002", categoria:"Tortas Circulares", nombre:"Torta Circular de Manjar", precio:42000, img:"https://cdn0.recetasgratis.net/es/posts/8/0/2/torta_milhojas_24208_orig.jpg", desc:"Manjar y nueces, tradición chilena."},
+
+      // Postres Individuales
+      {codigo:"PI001", categoria:"Postres Individuales", nombre:"Mousse de Chocolate", precio:5000, img:"https://www.gourmet.cl/wp-content/uploads/2016/09/Mousse-de-chocolate-ajustada-web.jpg", desc:"Cremoso y suave."},
+      {codigo:"PI002", categoria:"Postres Individuales", nombre:"Tiramisú Clásico", precio:5500, img:"https://binga.cl/cdn/shop/articles/tiramisu-receta-original.jpg?v=1644419306", desc:"Café, mascarpone y cacao."},
+
+      // Productos Sin Azúcar
+      {codigo:"PSA001", categoria:"Productos Sin Azúcar", nombre:"Torta Sin Azúcar de Naranja", precio:48000, img:"https://mozart.cl/wp-content/uploads/2025/05/88_MIF_2420_Torta_de_Naranja_Sin_Azucar_Anadida_1080x1080.jpg", desc:"Sabor cítrico sin azúcar añadida."},
+      {codigo:"PSA002", categoria:"Productos Sin Azúcar", nombre:"Cheesecake Sin Azúcar", precio:47000, img:"https://dulcesdiabeticos.com/wp-content/uploads/2020/08/Cheesecake-de-fresa-sin-azucar-w_opt.jpg", desc:"Suave y equilibrado."},
+
+      // Pastelería Tradicional
+      {codigo:"PT001", categoria:"Pastelería Tradicional", nombre:"Empanada de Manzana", precio:3000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ10HEmKHgSlM3XHSG5ojnIkQswUu_9HYPt5A&s", desc:"Clásico dulce horneado."},
+      {codigo:"PT002", categoria:"Pastelería Tradicional", nombre:"Tarta de Santiago", precio:6000, img:"https://cdn7.recetasdeescandalo.com/wp-content/uploads/2019/04/Tarta-de-Santiago-casera.-Receta-tradicional-gallega.jpg", desc:"Tradición con almendras."},
+
+      // Productos Sin Gluten
+      {codigo:"PG001", categoria:"Productos Sin Gluten", nombre:"Brownie Sin Gluten", precio:3500, img:"https://www.hola.com/horizon/landscape/14aee576ab21-brownie-sin-gluten-t.jpg", desc:"Denso y chocolatoso."},
+      {codigo:"PG002", categoria:"Productos Sin Gluten", nombre:"Pan Sin Gluten", precio:4000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCtDKtfLwuH0Tu9S-05BSKytxFGzKiYqQYKA&s", desc:"Suave y esponjoso."},
+
+      // Productos Vegana
+      {codigo:"PV001", categoria:"Productos Vegana", nombre:"Torta Vegana de Chocolate", precio:50000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeu5hmwbYaEySBsu_mkuNSVdqqVAmkfzZ3UQ&s", desc:"Sin productos de origen animal."},
+      {codigo:"PV002", categoria:"Productos Vegana", nombre:"Galletas Veganas de Avena", precio:4500, img:"https://www.herbalife.com/dmassets/regional-reusable-assets/emea/images/ri-oat-cookies-recipe-emea.jpg", desc:"Crujientes y sabrosas."},
+
+      // Tortas Especiales
+      {codigo:"TE001", categoria:"Tortas Especiales", nombre:"Torta Especial de Cumpleaños", precio:55000, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmG_Lx9Xxa-pVSgp8NwAXHugCZKDI7XSQzZw&s", desc:"Personalizable."},
+      {codigo:"TE002", categoria:"Tortas Especiales", nombre:"Torta Especial de Boda", precio:60000, img:"https://cdn0.matrimonios.cl/article-vendor/0251/original/1280/jpg/669ec31f-2f4f-4934-b17e-2a3648c1befb_8_130251-164579995520176.jpeg", desc:"Elegante y deliciosa."}
+    ];
+
+    /* ========= Render de productos ========= */
+    function cardProducto(p){
+      return `
+        <div class="col-md-6">
+          <div class="card h-50">
+            <img class="card-img-top" src="${p.img}" alt="${p.nombre}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${p.nombre}</h5>
+              <p class="text-muted small mb-2">${p.categoria}</p>
+              <p class="small text-secondary clamp-2 mb-2">${p.desc || ""}</p>
+              <p class="mb-3 fw-semibold">$ ${p.precio.toLocaleString('es-CL')}</p>
+              <div class="mt-auto">
+                <a href="#" class="btn btn-primary" onclick="agregarProducto('${p.codigo}','${p.nombre.replace(/'/g, "\\'")}', ${p.precio}); return false;">Agregar</a>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function poblarCategorias(){
+      const sel = document.getElementById('filtroCategoria');
+      sel.innerHTML = `<option value="">Todas</option>` + CATEGORIAS.map(c => `<option>${c}</option>`).join('');
+    }
+
+    function renderLista(){
+      const cat = document.getElementById('filtroCategoria').value;
+      const txt = document.getElementById('filtroTexto').value.toLowerCase().trim();
+      let lista = PRODUCTS.slice();
+      if(cat) lista = lista.filter(p => p.categoria === cat);
+      if(txt) lista = lista.filter(p => (p.nombre + ' ' + p.desc).toLowerCase().includes(txt));
+      document.getElementById('listaProductos').innerHTML = lista.map(cardProducto).join('');
+    }
+
+  
+
+
+
+
+
+    /* ========= Inicialización ========= */
+    document.addEventListener('DOMContentLoaded', () => {
+      poblarCategorias();
+      renderLista();
+      document.getElementById('filtroCategoria').addEventListener('change', renderLista);
+      document.getElementById('filtroTexto').addEventListener('input', renderLista);
+      document.getElementById('btnVaciar').addEventListener('click', vaciarCarrito);
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
 </body>
 </html>
