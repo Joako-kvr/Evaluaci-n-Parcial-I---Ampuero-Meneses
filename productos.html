@@ -36,7 +36,7 @@
       <section class="col-lg-8">
         <h1 class="h3 mb-3">Productos</h1>
 
-        <!-- Filtros simples -->
+        <!-- Filtros -->
         <div class="row g-3 mb-3">
           <div class="col-md-6">
             <label class="form-label">Categoría</label>
@@ -65,7 +65,7 @@
 
   <!-- ======= SCRIPTS ======= -->
   <script>
-    /* ========= Catálogo segun la pauta ========= */
+    /* ========= Catálogo ========= */
     const CATEGORIAS = [
       "Tortas Cuadradas","Tortas Circulares","Postres Individuales","Productos Sin Azúcar",
       "Pastelería Tradicional","Productos Sin Gluten","Productos Vegana","Tortas Especiales"
@@ -138,10 +138,10 @@
       document.getElementById('listaProductos').innerHTML = lista.map(cardProducto).join('');
     }
 
-      /* ========= Carrito muy simple (estilo profe) ========= */
+      /* ========= Carrito ========= */
     let sumaTotal = 0;
     function agregarProducto(codigo, nombre, precio){
-      // Se agrega un ítem por cada click (simple). Si quieres cantidades, se puede ampliar.
+      
       const liId = 'producto-carrito-' + codigo + '-' + cryptoRandom();
       document.getElementById('carrito').innerHTML += `
         <li class="list-group-item d-flex justify-content-between align-items-start" id="${liId}">
