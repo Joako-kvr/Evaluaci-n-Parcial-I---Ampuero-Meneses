@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="home.html">Pastelería Mil Sabores</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="home.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link">Productos</a></li>
+          <li class="nav-item"><a href="registro.html" class="nav-link active">Registro</a></li>
+          <li class="nav-item"><a href="iniciar sesion.html" class="nav-link">Iniciar sesión</a></li>
+          <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+</header>
+
+
+<main>
+    <section class="container" style="width: 500px"> 
+            <div class="row">
+                <div class="col-xl-12 mt-3 border p-3 rounder-3 ">
+                    <h1 class="text-center">Registro</h1>
+                    <div class="mb-3" >
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" aria-describedby="nombreHelp" >
+                        <div id="nombreHelp" class="form-text" style="color:red; display: none">*Nombre no válido</div>
+                        <div id="errorNombreVacio" class="form-text" style="color:red; display: none">*Obligatorio</div>
+                      </div>
+                    <div class="mb-3" >
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" aria-describedby="apellidoHelp" >
+                        <div id="apellidoHelp" class="form-text" style="color:red; display: none">*Apellido no válido</div>
+                        <div id="errorApellidoVacio" class="form-text" style="color:red; display: none">*Obligatorio</div>
+                      </div>
+                    <div class="mb-3" >
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" aria-describedby="correoHelp" >
+                        <div id="correoHelp" class="form-text" style="color:red; display: none">*Correo no válido</div>
+                        <div id="errorCorreoVacio" class="form-text" style="color:red; display: none">*Obligatorio</div>
+                      </div>
+                    <div class="mb-3" >
+                        <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento" aria-describedby="fechaNacimientoHelp">
+                        <div id="fechaNacimientoHelp" class="form-text" style="color:red; display: none">*Fecha no válida</div>
+                        <div id="errorFechaNacimientoVacio" class="form-text" style="color:red; display: none">*Seleccione fecha</div>
+                      </div>
+                    <div class="mb-3" >
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" >
+                        <div id="passwordHelp" class="form-text" style="color:red; display: none">*Debe tener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres</div>
+                        <div id="errorPasswordVacio" class="form-text" style="color:red; display: none">*Obligatorio</div>
+                      </div>
+
+                    <div class="mb-3" >
+                        <label for="passwordRep" class="form-label">Repita Contraseña</label>
+                        <input type="password" class="form-control" id="passwordRep" aria-describedby="emailHelp" >
+                        <div id="passwordRepHelp" class="form-text" style="color:red; display: none">*Contraseña no coincide</div>
+                        <div id="errorPasswordRepVacio" class="form-text" style="color:red; display: none">*Obligatorio</div>
+                      </div>
+
+
+                      <div class="mb-3">
+                            <button class="btn btn" onclick="validarNombre(); validarApellido(); validarCorreo(); validarPassword(); validarPasswordRep(); validarEdad(); mensajesValidaciones()">Registro </button>
+                            <button class="btn btn-secondary">Limpiar</button>
+
+                      </div>
+                </div>
+
+            </div>
+        <div id="modalMensaje" style="display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 9999;">
+          <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; max-width: 400px;">
+            <h3 id="contenidoModal" style="margin-bottom: 20px;">Usuario Creado</h3 >
+            <p></p>
+            <button onclick="irAHome()">Regresar a la página principal</button>
+          </div>
+        </div>
+
+
+        </section>
+
+
+
+</main>
+<footer>
+
+
+
+</footer>
+
+
+    <script>
+      function validarNombre() {
+        var regexNombre = /^[a-zA-ZñÑáéíóú]+$/;
+        var txtNombre = document.getElementById("nombre").value;
+
+        if (txtNombre == ''){
+        document.getElementById("errorNombreVacio").style.display = 'block';
+        document.getElementById("nombreHelp").style.display = 'none';
+        return;    
+        }else {
+            document.getElementById("errorNombreVacio").style.display = 'none';        
+        }
+
+        if (regexNombre.test(txtNombre)){
+        console.log("El nombre es válido");
+        document.getElementById("nombreHelp").style.display = 'none';
+        }else {
+        console.log("El nombre no es válido");
+        document.getElementById("nombreHelp").style.display = 'block';
+        return;
+        }
+      }
+
+        function validarApellido() {
+        var regexApellido = /^[a-zA-ZñÑáéíóú]+$/;
+        var txtApellido = document.getElementById("apellido").value;
+
+        if (txtApellido == ''){
+        document.getElementById("errorApellidoVacio").style.display = 'block';
+        document.getElementById("apellidoHelp").style.display = 'none';
+        return;    
+        }else {
+            document.getElementById("errorApellidoVacio").style.display = 'none';        
+        }
+
+        if (regexApellido.test(txtApellido)){
+        console.log("El apellido es válido");
+        document.getElementById("apellidoHelp").style.display = 'none';
+        }else {
+        console.log("El apellido no es válido");
+        document.getElementById("apellidoHelp").style.display = 'block';
+        return;
+        }
+      }
+
+
+      function validarCorreo() {
+        var regexCorreo = /^[a-zA-Z-9._\-]+@duoc.cl$/; 
+        var txtCorreo = document.getElementById("correo").value;
+
+        if (txtCorreo == ''){
+        document.getElementById("errorCorreoVacio").style.display = 'block';
+        document.getElementById("correoHelp").style.display = 'none';
+        return;    
+        }else {
+            document.getElementById("errorCorreoVacio").style.display = 'none';        
+        }
+
+        if (regexCorreo.test(txtCorreo)){
+        console.log("El correo es válido");
+        document.getElementById("correoHelp").style.display = 'none';
+        }else {
+        console.log("El correo no es válido");
+        document.getElementById("correoHelp").style.display = 'block';
+        return;
+        }
+      }
+
+      function validarEdad() {
+        var fechaNacimiento = new Date(document.getElementById("fechaNacimiento").value);
+        var hoy = new Date();
+        if (!fechaNacimiento) {
+          document.getElementById("errorFechaNacimientoVacio").style.display = 'block';
+          return;
+        }
+
+        var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+        var mesActual = hoy.getMonth();
+        var diaActual = hoy.getDate();
+
+        var yaCumplioEsteAño = (
+          mesActual > fechaNacimiento.getMonth() ||
+          (mesActual == fechaNacimiento.getMonth() && diaActual >= fechaNacimiento.getDate())
+        );
+
+        if (!yaCumplioEsteAño) {
+          edad--;
+        }
+
+        var esCumpleaños = (
+          fechaNacimiento.getDate() == diaActual &&
+          fechaNacimiento.getMonth() == mesActual
+        );
+
+        var esAdulto = edad >= 18;
+
+        var esMayor50 = edad > 50;
+
+
+        if (edad > 100 || edad < 14 ){
+           document.getElementById("fechaNacimientoHelp").style.display = 'block';
+        }else{
+          document.getElementById("fechaNacimientoHelp").style.display = 'none';
+        }
+
+    }
+
+
+      function validarPassword() {
+        var regexSoloLetrasYNumeros = /^[a-zA-Z0-9]+$/; 
+        var txtPassword = document.getElementById("password").value;
+        var tieneMayuscula = /[A-Z]/.test(txtPassword);
+        var longitudMinima = txtPassword.length >= 8;
+
+        if (txtPassword == ''){
+        document.getElementById("errorPasswordVacio").style.display = 'block';
+        document.getElementById("passwordHelp").style.display = 'none';
+        return;    
+        }else {
+            document.getElementById("errorPasswordVacio").style.display = 'none';        
+        }
+
+        if (!regexSoloLetrasYNumeros.test(txtPassword) || !tieneMayuscula || !longitudMinima){
+        console.log("El password no es válido");
+        document.getElementById("passwordHelp").style.display = 'block';
+        }else {
+        console.log("El password es válido");
+        document.getElementById("passwordHelp").style.display = 'none';
+        }
+      }
+
+        function validarPasswordRep() {
+        var txtPassword = document.getElementById("password").value;
+        var txtPasswordRep = document.getElementById("passwordRep").value;
+
+        if (txtPasswordRep == ''){
+        document.getElementById("errorPasswordRepVacio").style.display = 'block';
+        document.getElementById("passwordRepHelp").style.display = 'none';
+        return;    
+        }else {
+            document.getElementById("errorPasswordRepVacio").style.display = 'none';        
+        }
+
+        if (txtPassword != txtPasswordRep){
+        console.log("Contraseña no coincide");
+        document.getElementById("passwordRepHelp").style.display = 'block';
+        }else {
+        console.log("Contraseña coincide");
+        document.getElementById("passwordRepHelp").style.display = 'none';
+        return;
+        }
+      }
+                
+    function irAHome() {
+        window.location.href = "home.html";
+      }
+
+    function mensajesValidaciones() {
+
+    if (esAdulto || esMayor50 || esCumpleaños) {
+      var mensajes = [];
+
+      if (esAdulto) mensajes.push("Eres mayor de 18 años.");
+      if (esMayor50) mensajes.push("Tienes más de 50 años.");
+      if (esCumpleaños) mensajes.push("¡Feliz cumpleaños! 🎉");
+          
+      document.getElementById("contenidoModal").textContent = mensajes.join(" ");
+      document.getElementById("modalMensaje").style.display = "flex";
+    }
+  }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+    </script>
+</body>
+</html>
