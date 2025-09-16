@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nosotros — Pastelería Mil Sabores</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles/style.css?v=6">
+  <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -175,6 +175,7 @@
       nombreEl.style.color = "pink";
 
       document.getElementById("usuarioActivo").style.display = "flex";
+      document.getElementById("cerrarSesionBtn").style.display = "flex"
 
       document.querySelectorAll('.nav-link[href="registro.html"], .nav-link[href="iniciar sesion.html"]').forEach(el => {
         el.parentElement.style.display = 'none';
@@ -184,6 +185,7 @@
       document.getElementById("cerrarSesionBtn").addEventListener("click", function () {
         localStorage.removeItem("nombreUsuario");
         location.reload(); 
+        document.getElementById("cerrarSesionBtn").style.display = 'none'; 
       });
     }
   });

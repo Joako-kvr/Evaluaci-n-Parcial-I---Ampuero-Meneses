@@ -3,7 +3,7 @@
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
- <link rel="stylesheet" href="assets/styles/style.css?v=5">
+ <link rel="stylesheet" href="assets/styles/style.css">
 <title>Pastelería Mil Sabores</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
           <li class="nav-item"><a href="registro.html" class="nav-link">Registro</a></li>
           <li class="nav-item d-flex align-items-center" id="usuarioActivo" style="display: none;">
             <span class="nav-link" id="nombreUsuarioHeader"></span>
-            <button class="btn btn-sm btn-outline-light ms-2" id="cerrarSesionBtn">Cerrar sesión</button>
+            <button class="btn btn-sm ms-2 btn-cafe-claro" style="display: none" id="cerrarSesionBtn">Cerrar sesión</button> 
           </li>
 
         </li>
@@ -79,6 +79,7 @@
       nombreEl.style.color = "pink";
 
       document.getElementById("usuarioActivo").style.display = "flex";
+      document.getElementById("cerrarSesionBtn").style.display = "flex"
 
       document.querySelectorAll('.nav-link[href="registro.html"], .nav-link[href="iniciar sesion.html"]').forEach(el => {
         el.parentElement.style.display = 'none';
@@ -88,6 +89,7 @@
       document.getElementById("cerrarSesionBtn").addEventListener("click", function () {
         localStorage.removeItem("nombreUsuario");
         location.reload(); 
+        document.getElementById("cerrarSesionBtn").style.display = 'none'; 
       });
     }
   });

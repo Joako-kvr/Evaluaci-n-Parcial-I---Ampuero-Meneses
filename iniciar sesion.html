@@ -102,7 +102,8 @@
               if (txtCorreo == 'guille@duoc.uc' || txtPassword ==  'Guillermo123'){
                   var correoValidado = true;
                   var passwordValidad = true;
-                  localStorage.setItem("nombreUsuario", "Guillermo");    
+                  localStorage.setItem("nombreUsuario", "Guillermo"); 
+                  window.location.href = "home.html";   
               }else {
                   document.getElementById("errorCorreoVacio").style.display = 'none';   
                   document.getElementById("errorPasswordVacio").style.display = 'none'; 
