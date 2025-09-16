@@ -80,14 +80,18 @@
       </button>
       <div id="nav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="home.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link active" href="productos.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="registro.html">Registro</a></li>
-        <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">Iniciar Sesion</a></li>
-        <li class="nav-item"><a class="nav-link " href="nosotros.html">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link " href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link " href="contacto.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="productos.html">Carrito</a></li>
+          <li class="nav-item"><a href="home.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link">Productos</a></li>
+          <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link ">Contacto</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link active">Carrito</a></li>
+          <li class="nav-item"><a href="iniciar sesion.html" class="nav-link">Iniciar sesión</a></li>
+          <li class="nav-item"><a href="registro.html" class="nav-link">Registro</a></li>
+          <li class="nav-item d-flex align-items-center" id="usuarioActivo" style="display: none;">
+            <span class="nav-link" id="nombreUsuarioHeader"></span>
+            <button class="btn btn-sm btn-outline-light ms-2" id="cerrarSesionBtn">Cerrar sesión</button>
+          </li>
         </ul>
       </div>
     </div>
@@ -291,6 +295,26 @@ function cardProducto(p){
 
   </script>
 
+
+
+
+
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+      if (nombreUsuario) {
+      document.getElementById("nombreUsuarioHeader").textContent = ("¡Bienvenido "+ nombreUsuario +"!");
+      document.getElementById("nombreUsuarioHeader").style.color = "pink";
+      document.getElementById("usuarioActivo").style.display = "block";
+
+      document.querySelectorAll('.nav-link[href="registro.html"], .nav-link[href="iniciar sesion.html"]').forEach(el => {
+          el.parentElement.style.display = 'none';
+              });
+              }
+          });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
           crossorigin="anonymous"></script>

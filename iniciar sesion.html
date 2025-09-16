@@ -20,10 +20,13 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a href="home.html" class="nav-link">Inicio</a></li>
           <li class="nav-item"><a href="productos.html" class="nav-link">Productos</a></li>
-          <li class="nav-item"><a href="registro.html" class="nav-link">Registro</a></li>
-          <li class="nav-item"><a href="iniciar sesion.html" class="nav-link active">Iniciar sesión</a></li>
           <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link ">Contacto</a></li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link">Carrito</a></li>
+          <li class="nav-item"><a href="iniciar sesion.html" class="nav-link active">Iniciar sesión</a></li>
+          <li class="nav-item"><a href="registro.html" class="nav-link">Registro</a></li>
+
         </ul>
       </div>
     </div>
@@ -42,15 +45,18 @@
                     <div class="mb-3" >
                         <label for="correo" class="form-label">Correo</label>
                         <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        <div id="errorCorreoVacio" class="form-text" style="color:red; display: none">*Obligatorio</div>
                       </div>
                     <div class="mb-3" >
                         <label for="password" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
+                        <div id="passwordHelp" class="form-text" style="color:red; display: none">*Correo o Contraseña Incorrecta</div>
+                        <div id="errorPasswordVacio" class="form-text" style="color:red; display: none">*Obligatorio</div>
                       </div>
 
 
                       <div class="mb-3">
-                            <button class="btn btn-primary">Ingresar </button>
+                            <button class="btn btn-primary" onclick="validarIngreso()">Ingresar </button>
 
 
                       </div>
@@ -71,7 +77,43 @@
 </footer>
 
 
+        <script>
 
+          var correoValidado = false;
+          var passwordValidad = false;
+
+            function validarIngreso() {
+              var txtCorreo = document.getElementById("correo").value.toLowerCase();
+              var txtPassword = document.getElementById("password").value;
+
+
+              if (txtCorreo == '' ){
+                document.getElementById("passwordHelp").style.display = 'none'; 
+                document.getElementById("errorCorreoVacio").style.display = 'block';
+                return;
+              }
+              if (txtPassword ==  ''){
+                document.getElementById("passwordHelp").style.display = 'none'; 
+                document.getElementById("errorPasswordVacio").style.display = 'block'; 
+                return;
+              }else {
+
+
+              if (txtCorreo == 'guille@duoc.uc' || txtPassword ==  'Guillermo123'){
+                  var correoValidado = true;
+                  var passwordValidad = true;
+                  localStorage.setItem("nombreUsuario", "Guillermo");    
+              }else {
+                  document.getElementById("errorCorreoVacio").style.display = 'none';   
+                  document.getElementById("errorPasswordVacio").style.display = 'none'; 
+                  document.getElementById("passwordHelp").style.display = 'block'; 
+              }
+
+            }
+            }
+
+          
+        </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

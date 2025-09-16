@@ -15,15 +15,18 @@
     </button>
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="home.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="registro.html">Registro</a></li>
-        <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">Iniciar Sesion</a></li>
-        <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link active" href="contacto.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="productos.html">Carrito</a></li>
-        <li class="nav-item ms-lg-2">
+          <li class="nav-item"><a href="home.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link">Productos</a></li>
+          <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link active">Contacto</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link">Carrito</a></li>
+          <li class="nav-item"><a href="iniciar sesion.html" class="nav-link">Iniciar sesión</a></li>
+          <li class="nav-item"><a href="registro.html" class="nav-link">Registro</a></li>
+          <li class="nav-item d-flex align-items-center" id="usuarioActivo" style="display: none;">
+            <span class="nav-link" id="nombreUsuarioHeader"></span>
+            <button class="btn btn-sm btn-outline-light ms-2" id="cerrarSesionBtn">Cerrar sesión</button>
+          </li>
 
         </li>
       </ul>
@@ -60,6 +63,35 @@
 <script src="assets/js/utils.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/cart.js"></script>
+
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+    if (nombreUsuario) {
+      const nombreEl = document.getElementById("nombreUsuarioHeader");
+      nombreEl.textContent = "¡Bienvenido " + nombreUsuario + "!";
+      nombreEl.style.color = "pink";
+
+      document.getElementById("usuarioActivo").style.display = "flex";
+
+      document.querySelectorAll('.nav-link[href="registro.html"], .nav-link[href="iniciar sesion.html"]').forEach(el => {
+        el.parentElement.style.display = 'none';
+      });
+
+
+      document.getElementById("cerrarSesionBtn").addEventListener("click", function () {
+        localStorage.removeItem("nombreUsuario");
+        location.reload(); 
+      });
+    }
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>

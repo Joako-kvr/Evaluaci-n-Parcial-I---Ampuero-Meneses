@@ -10,22 +10,26 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- NAV -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
       <a class="navbar-brand" href="home.html">Pastelería Mil Sabores</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="home.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="registro.html">Registro</a></li>
-        <li class="nav-item"><a class="nav-link" href="iniciar sesion.html">Iniciar Sesion</a></li>
-        <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link " href="contacto.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="productos.html">Carrito</a></li>
+          <li class="nav-item"><a href="home.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link">Productos</a></li>
+          <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li class="nav-item"><a href="contacto.html" class="nav-link ">Contacto</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+          <li class="nav-item"><a href="productos.html" class="nav-link">Carrito</a></li>
+          <li class="nav-item"><a href="iniciar sesion.html" class="nav-link">Iniciar sesión</a></li>
+          <li class="nav-item"><a href="registro.html" class="nav-link">Registro</a></li>
+          <li class="nav-item d-flex align-items-center" id="usuarioActivo" style="display: none;">
+            <span class="nav-link" id="nombreUsuarioHeader"></span>
+            <button class="btn btn-sm ms-2 btn-cafe-claro" style="display: none" id="cerrarSesionBtn">Cerrar sesión</button> 
+          </li>
         </ul>
       </div>
     </div>
@@ -158,6 +162,32 @@
     </div>
   </footer>
 
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+    if (nombreUsuario) {
+      const nombreEl = document.getElementById("nombreUsuarioHeader");
+      nombreEl.textContent = "¡Bienvenido " + nombreUsuario + "!";
+      nombreEl.style.color = "pink";
+
+      document.getElementById("usuarioActivo").style.display = "flex";
+
+      document.querySelectorAll('.nav-link[href="registro.html"], .nav-link[href="iniciar sesion.html"]').forEach(el => {
+        el.parentElement.style.display = 'none';
+      });
+
+
+      document.getElementById("cerrarSesionBtn").addEventListener("click", function () {
+        localStorage.removeItem("nombreUsuario");
+        location.reload(); 
+      });
+    }
+  });
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
