@@ -33,45 +33,120 @@
 
   <main class="flex-grow-1">
    
-    <section class="container hero-section">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-6">
-          <h1 class="brand-script mb-3">Nosotros</h1>
-          <p class="lead">
-            Llevamos 50 años endulzando momentos en Chile. En Mil Sabores combinamos
-            recetas tradicionales con técnicas modernas para crear tortas y pasteles memorables.
-          </p>
-          <a href="productos.html" class="btn btn-primary">Ver catálogo</a>
-        </div>
-        <div class="col-lg-6">
-          <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm">
-            <img src="assets/images/taller_reposteria.jpg"
-                 alt="Taller de repostería"
-                 class="w-100 h-100 object-fit-cover">
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="container hero-section" id="Noticias">
+  <h2 class="text-center fw-bold mb-4">NOTICIAS IMPORTANTES</h2>
 
-        <section class="container hero-section">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-6">
-          <h1 class="brand-script mb-3">Nosotros</h1>
-          <p class="lead">
-            Llevamos 50 años endulzando momentos en Chile. En Mil Sabores combinamos
-            recetas tradicionales con técnicas modernas para crear tortas y pasteles memorables.
-          </p>
-          <a href="productos.html" class="btn btn-primary">Ver catálogo</a>
-        </div>
-        <div class="col-lg-6">
-          <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm">
-            <img src="assets/images/taller_reposteria.jpg"
-                 alt="Taller de repostería"
-                 class="w-100 h-100 object-fit-cover">
-          </div>
+  <!-- CASO CURIOSO #1 -->
+  <div class="news-card">
+    <div class="row g-3 align-items-center">
+      <div class="col-lg-8">
+        <h3 class="h4 text-uppercase fw-bold mb-2">CASO CURIOSO #1</h3>
+        <p>“Rescate de torta de boda”: la pareja pidió una torta de 4 pisos con traslado
+          de última hora. Solución: reforzamos estructura con dowels, cambiamos cobertura a
+          ganache para mejor transporte y coordinamos cadena de frío.</p>
+        <a class="btn-custom" data-bs-toggle="modal" data-bs-target="#modalCaso1">Ver caso</a>
+      </div>
+      <div class="col-lg-4">
+        <div class="ratio ratio-4x3 rounded-3 overflow-hidden shadow-sm">
+          <img src="assets/images/torta_destruida.png"
+               alt="Torta de boda"
+               class="w-100 h-100 object-fit-cover">
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+
+  <!-- CASO CURIOSO #2 -->
+  <div class="news-card">
+    <div class="row g-3 align-items-center">
+      <div class="col-lg-8 order-lg-1 order-2">
+        <h3 class="h4 text-uppercase fw-bold mb-2">CASO CURIOSO #2</h3>
+        <p>“Brownie sin gluten para alérgicos”: cliente con restricción severa. Implementamos
+          producción sin contaminación cruzada, insumos certificados y pruebas de lote.</p>
+        <a class="btn-custom" data-bs-toggle="modal" data-bs-target="#modalCaso2">Ver caso</a>
+      </div>
+      <div class="col-lg-4 order-lg-2 order-1">
+        <div class="ratio ratio-4x3 rounded-3 overflow-hidden shadow-sm">
+          <img src="assets/images/alergico_gluten.png"
+               alt="Brownie sin gluten"
+               class="w-100 h-100 object-fit-cover">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASO CURIOSO #3 (opcional) -->
+  <div class="news-card">
+    <div class="row g-3 align-items-center">
+      <div class="col-lg-8">
+        <h3 class="h4 text-uppercase fw-bold mb-2">CASO CURIOSO #3</h3>
+        <p>“Torta cuadrada de frutas XXL”: para 80 personas. Hicimos capas altas de bizcocho,
+          almíbar cítrico y frutas frescas selladas con gel neutro para brillo y conservación.</p>
+        <a class="btn-custom" data-bs-toggle="modal" data-bs-target="#modalCaso3">Ver caso</a>
+      </div>
+      <div class="col-lg-4">
+        <div class="ratio ratio-4x3 rounded-3 overflow-hidden shadow-sm">
+          <img src="assets/images/torta_xxl_fruta.png"
+               alt="Torta cuadrada de frutas"
+               class="w-100 h-100 object-fit-cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Modales con el detalle de cada caso ===== -->
+<div class="modal fade" id="modalCaso1" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Caso curioso #1 — Torta de boda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <ul>
+          <li>Relleno: vainilla + frutos rojos; cobertura: <em>ganache</em> estabilizada.</li>
+          <li>Estructura con dowels y base reforzada para transporte.</li>
+          <li>Entrega coordinada con cadena de frío y montaje en salón.</li>
+        </ul>
+        <p class="mb-0"><strong>Resultado:</strong> montaje a tiempo y cero daños en traslado.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalCaso2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Caso curioso #2 — Brownie sin gluten</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <ul>
+          <li>Insumos certificados sin gluten y sanitización de área/equipos.</li>
+          <li>Horneado en bandejas exclusivas y etiquetado con lote/fecha.</li>
+          <li>Degustación con el cliente y ajuste de dulzor.</li>
+        </ul>
+        <p class="mb-0"><strong>Resultado:</strong> pedido recurrente para eventos familiares.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalCaso3" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Caso curioso #3 — Torta XL de frutas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <ul>
+          <li>Bizcocho alto en capas, almíbar cítrico y crema chantilly estabilizada.</li>
+          <li>Frutas frescas selladas con gel neutro para brillo y duración.</li>
+          <li>Corte y porcionado en sitio por el equipo.</li>
+        </ul>
+        <p class="mb-0"><strong>Resultado:</strong> rendidor, fresco y fotogénico.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <!-- (Opcional) más secciones aquí -->
   </main>
