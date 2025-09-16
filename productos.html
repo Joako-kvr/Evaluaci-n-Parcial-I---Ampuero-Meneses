@@ -129,11 +129,11 @@
       </aside>
     </div>
   </main>
-  <footer class="mt-5 py-4 text-center text-muted bg-light">
-  <div class="container small">
-     <p>&copy;2025 Pastelería Mil Sabores. Todos los derechos reservados.</p>
-  </div>
-</footer>
+  <footer>
+    <div class="container">
+      <p class="mb-0">© 2025 Pastelería Mil Sabores. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
   <!-- ======= SCRIPTS ======= -->
   <script>
@@ -294,29 +294,7 @@ function cardProducto(p){
     
 
   </script>
-
-
-
-
-
-
-  <script>
-      document.addEventListener("DOMContentLoaded", function () {
-      const nombreUsuario = localStorage.getItem("nombreUsuario");
-
-      if (nombreUsuario) {
-      document.getElementById("nombreUsuarioHeader").textContent = ("¡Bienvenido "+ nombreUsuario +"!");
-      document.getElementById("nombreUsuarioHeader").style.color = "pink";
-      document.getElementById("usuarioActivo").style.display = "block";
-
-      document.querySelectorAll('.nav-link[href="registro.html"], .nav-link[href="iniciar sesion.html"]').forEach(el => {
-          el.parentElement.style.display = 'none';
-              });
-              }
-          });
-  </script>
-
-
+ 
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
